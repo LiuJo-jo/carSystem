@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.PmMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.example.demo.entity.PmEntity">
+        <id column="id" property="id" />
+        <result column="car_id" property="carId" />
+        <result column="user_id" property="userId" />
+        <result column="name" property="name" />
+        <result column="phonenumber" property="phonenumber" />
+        <result column="appointment_time" property="appointmentTime" />
+        <result column="create_time" property="createTime" />
+        <result column="seit" property="seit" />
+        <result column="mp_type" property="mpType" />
+        <result column="em_time" property="emTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, car_id, user_id, name, phonenumber, appointment_time, create_time, seit, mp_type, em_time
+    </sql>
+
+    <select id="getAll" parameterType="com.example.demo.entity.PmEntity" resultMap="BaseResultMap">
+        <include refid="Base_Column_List"/>
+        <where>
+            <if test="carId != null  and carId != ''"> and car_id = #{carId}</if>
+            <if test="userId != null  and userId != ''"> and user_id = #{userId}</if>
+            <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
+            <if test="appointmentTime != null  and appointmentTime != ''"> and appointment_time = #{appointmentTime}</if>
+            <if test="seit != null  and seit != ''"> and seit = #{seit}</if>
+            <if test="mpType != null  and mpType != ''"> and mp_type = #{mpType}</if>
+            <if test="createTime != null  and createTime != ''"> and create_time = #{createTime}</if>
+            LIMIT (#{pageNumber} - 1) * #{pageSize} OFFSET #{pageSize}
+        </where>
+    </select>
+
+</mapper>

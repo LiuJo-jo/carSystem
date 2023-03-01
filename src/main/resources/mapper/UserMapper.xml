@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.UserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.example.demo.entity.UserEntity">
+        <id column="id" property="id" />
+        <result column="user" property="user" />
+        <result column="username" property="username" />
+        <result column="password" property="password" />
+        <result column="authority" property="authority" />
+        <result column="state" property="state" />
+        <result column="create_time" property="createTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, user, username, password, authority, state, create_time
+    </sql>
+
+    <select id="getAll" parameterType="com.example.demo.entity.UserEntity" resultMap="BaseResultMap">
+        <include refid="Base_Column_List"/>
+        <where>
+            <if test="user != null  and user != ''"> and user like concat('%', #{user}, '%')</if>
+            <if test="username != null  and username != ''"> and username like concat('%', #{username}, '%')</if>
+            <if test="password != null  and password != ''"> and password = #{password}</if>
+            <if test="authority != null  and authority != ''"> and authority = #{authority}</if>
+            <if test="state != null  and state != ''"> and state = #{state}</if>
+            <if test="createTime != null  and createTime != ''"> and create_time = #{createTime}</if>
+            LIMIT (#{pageNumber} - 1) * #{pageSize} OFFSET #{pageSize}
+        </where>
+    </select>
+</mapper>
