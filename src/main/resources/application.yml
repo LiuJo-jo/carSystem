@@ -8,6 +8,6 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://10.1.0.243:3306/xb-styde?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&useSSL=true
-    username: root
-    password: Root@1234
+    url: jdbc:mysql://10.1.0.236:3306/xb-styde?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&useSSL=true
+    username: developer
+    password: developer&qx123456
