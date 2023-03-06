@@ -7,11 +7,7 @@ import com.example.demo.web.AjaxResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,6 +20,7 @@ import java.util.List;
  * @since 2023-03-01
  */
 @RestController
+@CrossOrigin
 @Api(value = "汽车详情接口")
 @RequestMapping("/car")
 public class CarController {
@@ -47,7 +44,7 @@ public class CarController {
      * @return
      */
     @PostMapping("/delete")
-    public AjaxResult deleteCar(@RequestBody List<Integer> carIds){
+    public AjaxResult deleteCar(@RequestBody List<Long> carIds){
         carService.removeByIds(carIds);
         return AjaxResult.success("删除汽车信息成功");
     }
@@ -71,7 +68,7 @@ public class CarController {
     @PostMapping("/select")
     public AjaxResult selectCar(@RequestBody CarEntity carEntity){
         List<CarEntity> list = carService.getAll(carEntity);
-        return AjaxResult.success("修改汽车信息成功");
+        return AjaxResult.success(list);
     }
 
 }

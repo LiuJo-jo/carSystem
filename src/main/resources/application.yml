@@ -5,6 +5,9 @@ server:
       matching-strategy: ant_path_matcher
   servlet:
     context-path: /deom #配置项目名称
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver

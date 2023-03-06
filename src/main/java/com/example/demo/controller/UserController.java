@@ -5,11 +5,7 @@ import com.example.demo.entity.UserEntity;
 import com.example.demo.server.UserService;
 import com.example.demo.web.AjaxResult;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,6 +18,7 @@ import java.util.List;
  * @since 2023-03-01
  */
 @RestController
+@CrossOrigin
 @RequestMapping("/user-entity")
 public class UserController {
     @Autowired
