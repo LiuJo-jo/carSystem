@@ -20,7 +20,7 @@
 
 
     <select id="getAll" parameterType="com.example.demo.entity.CarEntity" resultMap="BaseResultMap">
-        <include refid="Base_Column_List"/>
+        select <include refid="Base_Column_List"/> from car
         <where>
             <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
             <if test="phonenumber != null  and phonenumber != ''"> and phonenumber like concat('%', #{phonenumber}, '%')</if>
@@ -28,8 +28,8 @@
             <if test="brand != null  and brand != ''"> and brand = #{brand}</if>
             <if test="type != null  and type != ''"> and `type` = #{type}</if>
             <if test="createTime != null  and createTime != ''"> and create_time = #{createTime}</if>
-            LIMIT (#{pageNumber} - 1) * #{pageSize} OFFSET #{pageSize}
         </where>
+        LIMIT #{pageSize} OFFSET #{pageNumber}
     </select>
 
 </mapper>

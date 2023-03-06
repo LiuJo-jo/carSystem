@@ -3,6 +3,9 @@ package com.example.demo.entity;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.time.LocalDateTime;
 import java.io.Serializable;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -19,9 +22,9 @@ import io.swagger.annotations.ApiModelProperty;
 public class CarEntity extends PageEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
     @ApiModelProperty(value = "id")
-    private Integer id;
+    private Long id;
 
     @ApiModelProperty(value = "车主姓名")
     private String name;
@@ -40,12 +43,12 @@ public class CarEntity extends PageEntity implements Serializable {
 
     @ApiModelProperty(value = "创建时间")
     private LocalDateTime createTime;
-
-    public Integer getId() {
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
     public String getName() {
@@ -83,6 +86,7 @@ public class CarEntity extends PageEntity implements Serializable {
     public void setType(String type) {
         this.type = type;
     }
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     public LocalDateTime getCreateTime() {
         return createTime;
     }
