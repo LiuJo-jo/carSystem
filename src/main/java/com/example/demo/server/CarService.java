@@ -2,8 +2,10 @@ package com.example.demo.server;
 
 import com.example.demo.entity.CarEntity;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.example.demo.entity.UserEntity;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -15,5 +17,5 @@ import java.util.List;
  */
 public interface CarService extends IService<CarEntity> {
 
-    List<CarEntity> getAll(CarEntity carEntity);
+    Map<String,Object> getAll(CarEntity carEntity);
 }

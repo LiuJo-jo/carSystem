@@ -3,6 +3,8 @@ package com.example.demo.entity;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.time.LocalDateTime;
 import java.io.Serializable;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -21,20 +23,20 @@ public class PmEntity extends PageEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @ApiModelProperty(value = "主键ID")
-    private Integer id;
+    private Long id;
 
     @ApiModelProperty(value = "汽车表主键")
-    private Integer carId;
+    private Long carId;
 
     @ApiModelProperty(value = "用户名称")
-    private Integer userId;
+    private Long userId;
 
     @ApiModelProperty(value = "预约人名称")
     private String name;
 
     @ApiModelProperty(value = "预约人手机号码")
     private String phonenumber;
-
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     @ApiModelProperty(value = "预约时间")
     private LocalDateTime appointmentTime;
 
@@ -50,25 +52,25 @@ public class PmEntity extends PageEntity implements Serializable {
     @ApiModelProperty(value = "保养时长")
     private Integer emTime;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
-    public Integer getCarId() {
+    public Long getCarId() {
         return carId;
     }
 
-    public void setCarId(Integer carId) {
+    public void setCarId(Long carId) {
         this.carId = carId;
     }
-    public Integer getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
     public String getName() {

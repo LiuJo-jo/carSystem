@@ -32,4 +32,16 @@
         LIMIT #{pageSize} OFFSET #{pageNumber}
     </select>
 
+    <select id="getCount" parameterType="com.example.demo.entity.UserEntity" resultType="Integer">
+        select count(1) from car
+        <where>
+            <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
+            <if test="phonenumber != null  and phonenumber != ''"> and phonenumber like concat('%', #{phonenumber}, '%')</if>
+            <if test="carNumber != null  and carNumber != ''"> and car_number like concat('%', #{carNumber}, '%')</if>
+            <if test="brand != null  and brand != ''"> and brand = #{brand}</if>
+            <if test="type != null  and type != ''"> and `type` = #{type}</if>
+            <if test="createTime != null  and createTime != ''"> and create_time = #{createTime}</if>
+        </where>
+    </select>
+
 </mapper>

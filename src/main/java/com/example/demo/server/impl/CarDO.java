@@ -7,7 +7,9 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -22,7 +24,13 @@ public class CarDO extends ServiceImpl<CarMapper, CarEntity> implements CarServi
     @Autowired
     private CarMapper carMapper;
     @Override
-    public List<CarEntity> getAll(CarEntity carEntity) {
-        return carMapper.getAll(carEntity);
+    public Map<String,Object> getAll(CarEntity carEntity) {
+        List<CarEntity> all = carMapper.getAll(carEntity);
+
+        Integer count = carMapper.getCount(carEntity);
+        Map<String,Object> result = new HashMap<>();
+        result.put("total",count);
+        result.put("data",all);
+        return result;
     }
 }

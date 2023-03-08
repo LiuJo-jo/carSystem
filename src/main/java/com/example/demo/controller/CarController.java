@@ -55,20 +55,19 @@ public class CarController {
      * @return
      */
     @PostMapping("/update")
-    public AjaxResult updateCar(@RequestBody CarEntity carEntity){
-        carService.updateById(carEntity);
+    public AjaxResult updateCar(@RequestBody CarEntity CarEntity){
+        carService.updateById(CarEntity);
         return AjaxResult.success("修改汽车信息成功");
     }
 
     /**
      * 查询汽车成功
-     * @param carEntity
+     * @param CarEntity
      * @return
      */
     @PostMapping("/select")
-    public AjaxResult selectCar(@RequestBody CarEntity carEntity){
-        List<CarEntity> list = carService.getAll(carEntity);
-        return AjaxResult.success(list);
+    public AjaxResult selectCar(@RequestBody CarEntity CarEntity){
+        return AjaxResult.success(carService.getAll(CarEntity));
     }
 
 }

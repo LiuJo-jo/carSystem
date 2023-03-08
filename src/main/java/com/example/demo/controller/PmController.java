@@ -31,7 +31,7 @@ public class PmController {
     @PostMapping("/save")
     public AjaxResult savePm(@RequestBody PmEntity PmEntity){
         PmService.save(PmEntity);
-        return AjaxResult.success("新增汽车信息成功");
+        return AjaxResult.success("新增预约信息成功");
     }
 
     /**
@@ -40,9 +40,9 @@ public class PmController {
      * @return
      */
     @PostMapping("/delete")
-    public AjaxResult deletePm(@RequestBody List<Integer> PmIds){
+    public AjaxResult deletePm(@RequestBody List<Long> PmIds){
         PmService.removeByIds(PmIds);
-        return AjaxResult.success("删除汽车信息成功");
+        return AjaxResult.success("删除预约信息成功");
     }
 
     /**
@@ -53,7 +53,7 @@ public class PmController {
     @PostMapping("/update")
     public AjaxResult updatePm(@RequestBody PmEntity PmEntity){
         PmService.updateById(PmEntity);
-        return AjaxResult.success("修改汽车信息成功");
+        return AjaxResult.success("修改预约信息成功");
     }
 
     /**
@@ -63,7 +63,6 @@ public class PmController {
      */
     @PostMapping("/select")
     public AjaxResult selectPm(@RequestBody PmEntity PmEntity){
-        List<PmEntity> list = PmService.getAll(PmEntity);
-        return AjaxResult.success("修改汽车信息成功");
+        return AjaxResult.success(PmService.getAll(PmEntity));
     }
 }

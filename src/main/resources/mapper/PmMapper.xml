@@ -22,7 +22,7 @@
     </sql>
 
     <select id="getAll" parameterType="com.example.demo.entity.PmEntity" resultMap="BaseResultMap">
-        <include refid="Base_Column_List"/>
+        select <include refid="Base_Column_List"/> from pm
         <where>
             <if test="carId != null  and carId != ''"> and car_id = #{carId}</if>
             <if test="userId != null  and userId != ''"> and user_id = #{userId}</if>
@@ -31,8 +31,19 @@
             <if test="seit != null  and seit != ''"> and seit = #{seit}</if>
             <if test="mpType != null  and mpType != ''"> and mp_type = #{mpType}</if>
             <if test="createTime != null  and createTime != ''"> and create_time = #{createTime}</if>
-            LIMIT (#{pageNumber} - 1) * #{pageSize} OFFSET #{pageSize}
+        </where>
+        LIMIT #{pageSize}  OFFSET #{pageNumber}
+    </select>
+    <select id="getCount" parameterType="com.example.demo.entity.PmEntity" resultType="Integer">
+        select count(1) from pm
+        <where>
+            <if test="carId != null  and carId != ''"> and car_id = #{carId}</if>
+            <if test="userId != null  and userId != ''"> and user_id = #{userId}</if>
+            <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
+            <if test="appointmentTime != null  and appointmentTime != ''"> and appointment_time = #{appointmentTime}</if>
+            <if test="seit != null  and seit != ''"> and seit = #{seit}</if>
+            <if test="mpType != null  and mpType != ''"> and mp_type = #{mpType}</if>
+            <if test="createTime != null  and createTime != ''"> and create_time = #{createTime}</if>
         </where>
     </select>
-
 </mapper>

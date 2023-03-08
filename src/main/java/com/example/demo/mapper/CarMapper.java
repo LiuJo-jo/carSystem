@@ -18,4 +18,6 @@ import java.util.List;
 public interface CarMapper extends BaseMapper<CarEntity> {
 
     List<CarEntity> getAll(CarEntity carEntity);
+
+    Integer getCount(CarEntity carEntity);
 }

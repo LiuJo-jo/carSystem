@@ -28,9 +28,9 @@ public class PageEntity {
     }
 
     public void setPageSize(Integer pageSize) {
-        if(pageNumber != 0){
-            this.pageNumber = (pageNumber - 1) * pageSize;
-        }
+//        if(pageNumber != 0){
+//            this.pageNumber = (pageNumber - 1) * pageSize;
+//        }
         this.pageSize = pageSize;
     }
 

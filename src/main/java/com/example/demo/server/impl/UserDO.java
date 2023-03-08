@@ -1,5 +1,7 @@
 package com.example.demo.server.impl;
 
+import cn.hutool.db.Page;
+import cn.hutool.db.PageResult;
 import com.example.demo.entity.UserEntity;
 import com.example.demo.mapper.UserMapper;
 import com.example.demo.server.UserService;
@@ -7,7 +9,9 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -19,12 +23,17 @@ import java.util.List;
  */
 @Service
 public class UserDO extends ServiceImpl<UserMapper, UserEntity> implements UserService {
-
     @Autowired
     private UserMapper userMapper;
 
     @Override
-    public List<UserEntity> getAll(UserEntity userEntity) {
-        return userMapper.getAll(userEntity);
+    public Map<String,Object> getAll(UserEntity userEntity) {
+        List<UserEntity> all = userMapper.getAll(userEntity);
+
+        Integer count = userMapper.getCount(userEntity);
+        Map<String,Object> result = new HashMap<>();
+        result.put("total",count);
+        result.put("data",all);
+        return result;
     }
 }

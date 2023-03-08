@@ -19,4 +19,6 @@ import java.util.List;
 public interface UserMapper extends BaseMapper<UserEntity> {
 
     List<UserEntity> getAll(UserEntity userEntity);
+
+    Integer getCount(UserEntity userEntity);
 }

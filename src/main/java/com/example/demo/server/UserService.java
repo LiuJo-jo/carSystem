@@ -4,6 +4,7 @@ import com.example.demo.entity.UserEntity;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -15,5 +16,5 @@ import java.util.List;
  */
 public interface UserService extends IService<UserEntity> {
 
-    List<UserEntity> getAll(UserEntity userEntity);
+    Map<String,Object> getAll(UserEntity userEntity);
 }

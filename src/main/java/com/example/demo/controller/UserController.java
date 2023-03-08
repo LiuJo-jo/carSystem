@@ -31,7 +31,7 @@ public class UserController {
     @PostMapping("/save")
     public AjaxResult saveUser(@RequestBody UserEntity UserEntity){
         UserService.save(UserEntity);
-        return AjaxResult.success("新增汽车信息成功");
+        return AjaxResult.success("新增保养员信息成功");
     }
 
     /**
@@ -40,9 +40,9 @@ public class UserController {
      * @return
      */
     @PostMapping("/delete")
-    public AjaxResult deleteUser(@RequestBody List<Integer> UserIds){
+    public AjaxResult deleteUser(@RequestBody List<Long> UserIds){
         UserService.removeByIds(UserIds);
-        return AjaxResult.success("删除汽车信息成功");
+        return AjaxResult.success("删除保养员信息成功");
     }
 
     /**
@@ -53,7 +53,7 @@ public class UserController {
     @PostMapping("/update")
     public AjaxResult updateUser(@RequestBody UserEntity UserEntity){
         UserService.updateById(UserEntity);
-        return AjaxResult.success("修改汽车信息成功");
+        return AjaxResult.success("修改保养员信息成功");
     }
 
     /**
@@ -63,7 +63,6 @@ public class UserController {
      */
     @PostMapping("/select")
     public AjaxResult selectUser(@RequestBody UserEntity UserEntity){
-        List<UserEntity> list = UserService.getAll(UserEntity);
-        return AjaxResult.success("修改汽车信息成功");
+        return AjaxResult.success(UserService.getAll(UserEntity));
     }
 }

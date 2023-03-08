@@ -1,9 +1,11 @@
 package com.example.demo.server;
 
+import com.example.demo.entity.CarEntity;
 import com.example.demo.entity.PmEntity;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -15,5 +17,6 @@ import java.util.List;
  */
 public interface PmService extends IService<PmEntity> {
 
-    List<PmEntity> getAll(PmEntity pmEntity);
+    Map<String,Object> getAll(PmEntity pmEntity);
+
 }
