@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.mapper.CarMapper">
@@ -45,3 +46,40 @@
     </select>
 
 </mapper>
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.CarMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.example.demo.entity.CarEntity">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="phonenumber" property="phonenumber" />
+        <result column="car_number" property="carNumber" />
+        <result column="brand" property="brand" />
+        <result column="type" property="type" />
+        <result column="create_time" property="createTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, name, phonenumber, car_number, brand, type, create_time
+    </sql>
+
+
+    <select id="getAll" parameterType="com.example.demo.entity.CarEntity" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/> from car
+        <where>
+            <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
+            <if test="phonenumber != null  and phonenumber != ''"> and phonenumber like concat('%', #{phonenumber}, '%')</if>
+            <if test="carNumber != null  and carNumber != ''"> and car_number like concat('%', #{carNumber}, '%')</if>
+            <if test="brand != null  and brand != ''"> and brand = #{brand}</if>
+            <if test="type != null  and type != ''"> and `type` = #{type}</if>
+            <if test="createTime != null  and createTime != ''"> and create_time = #{createTime}</if>
+        </where>
+        LIMIT #{pageSize} OFFSET #{pageNumber}
+    </select>
+
+</mapper>
+>>>>>>> 4d743afdae11cf4a101037e57113edd76d3f7080
