@@ -21,4 +21,6 @@ public interface UserMapper extends BaseMapper<UserEntity> {
     List<UserEntity> getAll(UserEntity userEntity);
 
     Integer getCount(UserEntity userEntity);
+
+    List<UserEntity> login(UserEntity userEntity);
 }

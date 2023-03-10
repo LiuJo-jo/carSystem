@@ -2,9 +2,7 @@ package com.example.demo.server;
 
 import com.example.demo.entity.CarEntity;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.example.demo.entity.UserEntity;
 
-import java.util.List;
 import java.util.Map;
 
 /**

@@ -16,5 +16,7 @@ import java.util.Map;
  */
 public interface UserService extends IService<UserEntity> {
 
-    Map<String,Object> getAll(UserEntity userEntity);
+    Map<String, Object> getAll(UserEntity userEntity);
+
+    Map<String, Object> login(UserEntity userEntity);
 }

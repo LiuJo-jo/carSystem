@@ -1,7 +1,5 @@
 package com.example.demo.server.impl;
 
-import cn.hutool.db.Page;
-import cn.hutool.db.PageResult;
 import com.example.demo.entity.UserEntity;
 import com.example.demo.mapper.UserMapper;
 import com.example.demo.server.UserService;
@@ -27,13 +25,25 @@ public class UserDO extends ServiceImpl<UserMapper, UserEntity> implements UserS
     private UserMapper userMapper;
 
     @Override
-    public Map<String,Object> getAll(UserEntity userEntity) {
+    public Map<String, Object> getAll(UserEntity userEntity) {
         List<UserEntity> all = userMapper.getAll(userEntity);
-
         Integer count = userMapper.getCount(userEntity);
-        Map<String,Object> result = new HashMap<>();
-        result.put("total",count);
-        result.put("data",all);
+        Map<String, Object> result = new HashMap<>();
+        result.put("total", count);
+        result.put("data", all);
+        return result;
+    }
+
+    @Override
+    public Map<String, Object> login(UserEntity userEntity) {
+        List<UserEntity> results = userMapper.login(userEntity);
+        Map<String, Object> result = new HashMap<>();
+        if (results.isEmpty()) {
+            result.put("msg", "请检查账号或密码是否正确");
+        } else {
+            result.put("msg", "success");
+            result.put("data", results);
+        }
         return result;
     }
 }

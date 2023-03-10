@@ -34,12 +34,18 @@
     <select id="getCount" parameterType="com.example.demo.entity.UserEntity" resultType="Integer">
         select count(1) from user
         <where>
-            <if test="user != null  and user != ''"> and user like concat('%', #{user}, '%')</if>
-            <if test="username != null  and username != ''"> and username like concat('%', #{username}, '%')</if>
-            <if test="password != null  and password != ''"> and password = #{password}</if>
-            <if test="authority != null  and authority != ''"> and authority = #{authority}</if>
-            <if test="state != null  and state != ''"> and state = #{state}</if>
-            <if test="createTime != null  and createTime != ''"> and create_time = #{createTime}</if>
+            <if test="user != null  and user != ''">and user like concat('%', #{user}, '%')</if>
+            <if test="username != null  and username != ''">and username like concat('%', #{username}, '%')</if>
+            <if test="password != null  and password != ''">and password = #{password}</if>
+            <if test="authority != null  and authority != ''">and authority = #{authority}</if>
+            <if test="state != null  and state != ''">and state = #{state}</if>
+            <if test="createTime != null  and createTime != ''">and create_time = #{createTime}</if>
         </where>
+    </select>
+
+    <select id="login" parameterType="com.example.demo.entity.UserEntity" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user where username = #{username} and password = #{password}
     </select>
 </mapper>

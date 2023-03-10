@@ -58,11 +58,23 @@ public class UserController {
 
     /**
      * 查询汽车成功
+     *
      * @param UserEntity
      * @return
      */
     @PostMapping("/select")
-    public AjaxResult selectUser(@RequestBody UserEntity UserEntity){
+    public AjaxResult selectUser(@RequestBody UserEntity UserEntity) {
         return AjaxResult.success(UserService.getAll(UserEntity));
+    }
+
+    /**
+     * 登录
+     *
+     * @param UserEntity
+     * @return
+     */
+    @PostMapping("/login")
+    public AjaxResult LoginUser(@RequestBody UserEntity UserEntity) {
+        return AjaxResult.success(UserService.login(UserEntity));
     }
 }
